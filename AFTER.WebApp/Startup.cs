@@ -17,6 +17,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Text.Json.Serialization;
 
@@ -78,9 +79,35 @@ namespace AFTER.WebApp
 
                 // ignore omitted parameters on models to enable optional params (e.g. User update)
                 x.JsonSerializerOptions.IgnoreNullValues = true;
-            }); services.AddSwaggerGen(c =>
+            });
+
+            services.AddSwaggerGen(c =>
             {
+                c.CustomSchemaIds(type => type.ToString());
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "WebApp1", Version = "v1" });
+                c.AddSecurityDefinition("Bearer",
+                    new OpenApiSecurityScheme
+                    {
+                        In = ParameterLocation.Header,
+                        Description =
+                            "Please enter into field the word 'Bearer' following by space and JWT",
+                        Name = "authorization",
+                        Type = SecuritySchemeType.ApiKey
+                    });
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement() {
+                    {
+                        new OpenApiSecurityScheme {
+                            Reference =
+                                new OpenApiReference {
+                                    Type = ReferenceType.SecurityScheme, Id = "Bearer"
+                                },
+                            Scheme = "oauth2",
+                            Name = "Bearer",
+                            In = ParameterLocation.Header,
+                        },
+                        new List<string>()
+                    }
+                });
             });
         }
 
@@ -162,6 +189,7 @@ namespace AFTER.WebApp
         private void AddMappings(IServiceCollection services)
         {
             services.AddAutoMapper(typeof(UserProfile));
+            services.AddAutoMapper(typeof(TicketProfile));
         }
 
         private void BindHttpClients(IServiceCollection services)
@@ -178,7 +206,7 @@ namespace AFTER.WebApp
             services.AddTransient<IEmailService, EmailService>();
             services.AddTransient<IMD5Service, MD5Service>();
             services.AddTransient<IHttpContextService, HttpContextService>();
-            services.AddTransient<ITransmissionStationService, TransmissionStationService>();
+            services.AddTransient<ITicketService, TicketService>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }

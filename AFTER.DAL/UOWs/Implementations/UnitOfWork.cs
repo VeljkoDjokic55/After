@@ -12,8 +12,8 @@ namespace AFTER.DAL.UOWs.Implementations
         private AFTERContext _context;
         private IUserRepository UserRepository { get; set; }
         private IAuditLogRepository AuditLogRepository { get; set; }
-        private ITransmissionStationRepository TransmissionStationRepository { get; set; }
-        
+        private ITicketRepository TicketRepository { get; set; }
+
         public UnitOfWork(AFTERContext context)
         {
             _context = context;
@@ -29,10 +29,11 @@ namespace AFTER.DAL.UOWs.Implementations
             return AuditLogRepository ??= new AuditLogRepository(_context);
         }
 
-        public ITransmissionStationRepository GetTransmissionStationRepository()
+        public ITicketRepository GetTicketRepository()
         {
-            return TransmissionStationRepository ??= new TransmissionStationRepository(_context);
+            return TicketRepository ??= new TicketRepository(_context);
         }
+
 
         public async Task<int> CompleteAsync()
         {

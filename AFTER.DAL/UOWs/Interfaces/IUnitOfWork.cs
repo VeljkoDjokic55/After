@@ -9,7 +9,7 @@ namespace AFTER.DAL.UOWs.Interfaces
         Task<int> CompleteAsync();
         public IUserRepository GetUserRepository();
         public IAuditLogRepository GetAuditLogRepository();
-        public ITransmissionStationRepository GetTransmissionStationRepository();
-        
+        public ITicketRepository GetTicketRepository();
+
     }
 }

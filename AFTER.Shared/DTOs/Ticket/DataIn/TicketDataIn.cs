@@ -4,12 +4,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace AFTER.Shared.DTOs.TS
+namespace AFTER.Shared.DTOs.Ticket.DataIn
 {
-    public class TransmissionStationDto
+    public class TicketDataIn
     {
         public int Id { get; set; }
+        public Guid? Guid { get; set; }
         public string Name { get; set; }
-        public string Code { get; set; }
+        public DateTime? ValidFrom { get; set; }
+        public DateTime? ValidTo { get; set; }
     }
 }
