@@ -1,0 +1,50 @@
+.header-top {
+  height: 6.5rem;
+  border-bottom: 2px solid #E9E9EC;
+  display: flex;
+  align-items: center;
+  padding: 0 3rem; 
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1001;
+  background-color: #fff;
+  .logo-wrapper {
+    width: 100%;
+    max-width: 24rem;
+  }
+  .user-wrapper {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    .icon {
+      position: relative;
+      &-badge {
+        width: 1.6rem;
+        height: 1.6rem;
+        border-radius: 50%;
+        background-color: var(--primary-color);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 0.8rem;
+        position: absolute;
+        line-height: 0.9rem;
+        top: -0.2rem;
+        right: -0.6rem;
+      }
+    }
+    .user-img-wrapper {
+      margin-left: 4.5rem;
+      img {
+        width: 4rem;
+        height: 4rem;
+        min-height: 4rem;
+        border-radius: 1rem;
+      }
+    }
+    
+  }
+}

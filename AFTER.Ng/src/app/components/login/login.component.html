@@ -1,0 +1,42 @@
+<div class="login-page">
+  <div class="page-wrap">
+    <div class="logo">
+      <img src="../../../assets/logo-md.svg" alt="AFTER Logo">
+    </div>
+    <div class="form-wrapper">
+      <h1>Let’s sign you in</h1>
+      <p class="welcome-text">Welcome back, you’ve been missed!</p>
+      <form ngNativeValidate (submit)="login()">
+        <div class="form-item form-floating mb-3">
+          <input [(ngModel)]="email" name="email" type="text" class="form-control" id="floatingInput" placeholder=" " required>
+          <label for="floatingInput">Your Username or Email</label>
+        </div>
+        <div class="form-item form-floating">
+          <input [(ngModel)]="pass" name="password" [type]="showPw ? 'text' : 'password'" class="form-control" id="floatingPassword" placeholder=" " required>
+          <label for="floatingPassword">Enter Password</label>
+          <div class="show-pw" (click)="showPassword()">
+            <ng-template [ngIf]="showPw">
+              <img src="../../../assets/icons/eye.svg" alt="Show password icon">
+            </ng-template>
+            <ng-template [ngIf]="!showPw">
+              <img src="../../../assets/icons/eye-slash.svg" alt="Show password icon">
+            </ng-template>
+          </div>
+        </div>
+        <div class="form-item-footer">
+          <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" id="exampleCheck1">
+            <label class="form-check-label" for="exampleCheck1">Remember me</label>
+          </div>
+          <a [routerLink]="['/forgot-password']" class="link">Forgot Password</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Login</button>
+
+      </form>
+      <div class="help">Do you need help? <a class="link" href="">Click here</a></div>
+    </div>
+  </div>
+  
+</div>
+

@@ -1,0 +1,66 @@
+<main class="container-fluid page-content">
+  <div class="page-filter">
+    <p>Show:</p>
+  
+    <app-multi-select-dropdown
+      [items]="assetsList"
+      label="All assets"
+      (shareCheckedList)="shareCheckedList($event)" 
+      (shareIndividualCheckedList)="shareIndividualCheckedList($event)">
+    </app-multi-select-dropdown>
+    <app-multi-select-dropdown
+      [items]="regionsList"
+      label="All regions"
+      (shareCheckedList)="shareCheckedList($event)" 
+      (shareIndividualCheckedList)="shareIndividualCheckedList($event)">
+    </app-multi-select-dropdown>
+    <button class="btn btn-primary">
+      <img src="../../../assets/icons/download-icon.svg" alt="Download icon">
+      <span>Download Report</span>
+    </button>
+  
+  </div>
+  
+  <div class="card-wrapper">
+    <h2 class="card-title mb-25">Asset regions</h2>
+    <div class="card">
+      <div class="asset-regions-data">
+        <div class="total-nums">
+          <div class="num-wrapper">
+            <h2 class="num">78.2K</h2>
+            <p>Total no. of assets</p>
+          </div>
+          <div class="data data-up">
+            <img src="../../../assets/icons/arrow-up.svg" alt="Arrow Up">
+            <span>105.23 %</span>
+          </div>
+        </div>
+        
+      </div>
+      <div class="asset-regions-map">
+
+      </div>
+    </div>
+  </div>
+  <div class="card-wrapper">
+    <h2 class="card-title mb-25">Analytics Overview</h2>
+    <div class="card">
+      <div class="asset-regions-data">
+        <div class="total-nums">
+          <div class="num-wrapper">
+            <h2 class="num">78.2K</h2>
+            <p>Total no. of assets</p>
+          </div>
+          <div class="data data-up">
+            <img src="../../../assets/icons/arrow-up.svg" alt="Arrow Up">
+            <span>105.23 %</span>
+          </div>
+        </div>
+        
+      </div>
+      <div class="asset-regions-map">
+
+      </div>
+    </div>
+  </div>
+</main>

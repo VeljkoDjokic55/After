@@ -1,0 +1,25 @@
+<div class="paging-wrapper" [hidden]="count == 0">
+    <button (click)="changePage(1)" [ngClass] = "{'disabled': currentPage == 1}">
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M5.16667 9.16536L1 4.9987L5.16667 0.832031M11 9.16536L6.83333 4.9987L11 0.832031" stroke="#344054" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <button (click)="changePage(currentPage - 1)" [ngClass] = "{'disabled': currentPage == 1}">
+        <svg class="previous-svg" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M12.8332 7.0013H1.1665M1.1665 7.0013L6.99984 12.8346M1.1665 7.0013L6.99984 1.16797" stroke="#344054" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <div class="pages">
+        <button class="paging-nums" [ngClass]="{'active': vp == currentPage}"  *ngFor="let vp of getVisiblePages()" (click)="changePage(vp)">{{vp}}</button>
+    </div>
+    <button (click)="changePage(currentPage + 1)" [ngClass] = "{'disabled': isLastPage}">
+        <svg class="next-svg" width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.1665 7.0013H12.8332M12.8332 7.0013L6.99984 1.16797M12.8332 7.0013L6.99984 12.8346" stroke="#344054" stroke-width="1.67" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+    <button (click)="changePage(-1)" [ngClass] = "{'disabled': isLastPage}">
+        <svg width="12" height="10" viewBox="0 0 12 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M6.83333 0.834636L11 5.0013L6.83333 9.16797M1 0.834636L5.16667 5.0013L1 9.16797" stroke="#344054" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+    </button>
+</div>

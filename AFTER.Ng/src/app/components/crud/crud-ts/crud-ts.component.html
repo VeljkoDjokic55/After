@@ -1,0 +1,67 @@
+<div class="title">
+    <p>Transmission station</p>
+    <button type="button" class="btn add-new-button" data-bs-toggle="modal" data-bs-target="#addNewTS" (click)="addNew()">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M8 0C7.4477 0 7 0.44772 7 1V7H1C0.44772 7 0 7.4477 0 8C0 8.5523 0.44772 9 1 9H7V15C7 15.5523 7.4477 16 8 16C8.5523 16 9 15.5523 9 15V9H15C15.5523 9 16 8.5523 16 8C16 7.4477 15.5523 7 15 7H9V1C9 0.44772 8.5523 0 8 0Z" fill="white"/>
+        </svg>
+        Add new
+    </button>
+</div>
+<div class="container-fluid border-bottom">
+    <table>
+        <tr class="header-row">
+            <th>NAME</th>
+            <th>CODE</th>
+            <th></th>
+        </tr>
+        <tr class="content-wrapper" *ngFor="let ts of transmissionStations" data-bs-toggle="modal" data-bs-target="#addNewTS" (click)="selectTs(ts)">
+            <td>{{ts.name}}</td>
+            <td>{{ts.code}}</td>
+            <td class="td-svg">
+                <svg data-bs-toggle="modal" data-bs-target="#deleteTs" (click)="selectTs(ts)" width="22" height="22" viewBox="0 0 22 22" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd" d="M11 22C17.0751 22 22 17.0751 22 11C22 4.92487 17.0751 0 11 0C4.92487 0 0 4.92487 0 11C0 17.0751 4.92487 22 11 22ZM11 20C15.9706 20 20 15.9706 20 11C20 6.02944 15.9706 2 11 2C6.02944 2 2 6.02944 2 11C2 15.9706 6.02944 20 11 20ZM6 11C6 10.4477 6.44772 10 7 10H15C15.5523 10 16 10.4477 16 11C16 11.5523 15.5523 12 15 12H7C6.44772 12 6 11.5523 6 11Z" fill="#DE350B"/>
+                </svg>
+            </td>
+        </tr>
+    </table>
+</div>
+<div>
+  <app-paging *ngIf="count > 0" [pageSize]="pageSize" [count]="count" [currentPage]="currentPage" (pageChange)="pageChange($event)"></app-paging>
+</div>
+
+<div class="modal fade" id="addNewTS" tabindex="-1" role="dialog" aria-labelledby="addNewTsTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">New transmission station</h5>
+          <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+            Cancel
+          </button>
+        </div>
+        <div class="modal-body">
+          <input placeholder="Transmission station name" type="text" [(ngModel)]="selectedTs.name" />
+          <p class="error" *ngIf="savePressed && !selectedTs.name">Transmission station name is required!</p>
+          <input placeholder="Code" type="text" [(ngModel)]="selectedTs.code" />
+          <p class="error" *ngIf="savePressed && !selectedTs.code">Code is required!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="save()">Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<div class="modal fade" id="deleteTs" tabindex="-1" role="dialog" aria-labelledby="deleteTsTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header delete-modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Are you sure you want to delete this TS?</h5>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="deleteTs()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+

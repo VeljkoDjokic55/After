@@ -1,0 +1,13 @@
+<div class="dropdown multi-select-dropdown">
+  <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    <span *ngIf="checkedList.length<=0">{{label}}</span>
+    <span *ngIf="checkedList.length>0">{{checkedList.join(', ')}}</span>
+    <img src="../../../../assets/icons/arrow.svg" alt="Arrow icon">
+  </button>
+  <ul class="dropdown-menu">
+    <label *ngFor="let item of items">
+      <input type="checkbox" [(ngModel)]="item.checked" (change)="getSelectedValue(item.checked,item.name)" />
+      <span>{{item.name}}</span>
+    </label>
+  </ul>
+</div>

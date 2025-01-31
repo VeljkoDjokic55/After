@@ -1,0 +1,97 @@
+<nav class="sidenav">
+  <div class="sidenav-items">
+    <div class="top-nav">
+      <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/dashboard']">
+        <img src="../../../assets/icons/menu/dashboard.svg" alt="Dashboard icon">
+        <span>Dashboard</span>
+      </a>
+      <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+        <img src="../../../assets/icons/menu/customers.svg" alt="Customers icon">
+        <span>Customers</span>
+      </a>
+  
+      <div class="item-wrapper">
+        <a class="nav-item" data-bs-toggle="collapse" data-bs-target="#assets" aria-expanded="true" aria-controls="assets">
+          <span class="label">ASSETS</span>
+          <img class="arrow-icon" src="../../../assets/icons/arrow.svg" alt="Arrow icon">
+        </a>
+        <div id="assets" class="accordion-collapse collapse submenu show" data-bs-parent="#dropdownMenu">
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/feeder.svg" alt="Customers icon">
+            <span>Feeder</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/transformers.svg" alt="Customers icon">
+            <span>Transformers</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/lt-pole.svg" alt="Customers icon">
+            <span>LT Poles</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/buildings.svg" alt="Customers icon">
+            <span>Buildings</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/meters.svg" alt="Customers icon">
+            <span>Meters</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="item-wrapper">
+        <a class="nav-item" data-bs-toggle="collapse" data-bs-target="#operations" aria-expanded="true" aria-controls="operations">
+          <span class="label">OPERATIONS</span>
+          <img class="arrow-icon" src="../../../assets/icons/arrow.svg" alt="Arrow icon">
+        </a>
+        <div id="operations" class="accordion-collapse collapse submenu show" data-bs-parent="#dropdownMenu">
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/surveys.svg" alt="Surveys icon">
+            <span>Surveys</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/installations.svg" alt="Installations icon">
+            <span>Installations</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/test']">
+            <img src="../../../assets/icons/menu/work.svg" alt="Work icon">
+            <span>Work orders</span>
+          </a>
+        </div>
+      </div>
+
+      <div class="item-wrapper">
+        <a class="nav-item" data-bs-toggle="collapse" data-bs-target="#settings" aria-expanded="true" aria-controls="settings">
+          <span class="label">SETTINGS</span>
+          <img class="arrow-icon" src="../../../assets/icons/arrow.svg" alt="Arrow icon">
+        </a>
+        <div id="settings" class="accordion-collapse collapse submenu show" data-bs-parent="#dropdownMenu">
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/profile']">
+            <img src="../../../assets/icons/menu/profile.svg" alt="Profile icon">
+            <span>Profile</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/user-management']">
+            <img src="../../../assets/icons/menu/user.svg" alt="User icon">
+            <span>User management</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/utility-management']">
+            <img src="../../../assets/icons/menu//utility.svg" alt="Utility icon">
+            <span>Utility management</span>
+          </a>
+          <a class="nav-item" routerLinkActive="item-active" [routerLink]="['/crud']">
+            <img src="../../../assets/icons/menu/crud.svg" alt="CRUD icon">
+            <span>CRUD settings</span>
+          </a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <div class="bottom-nav"> 
+      <a class="nav-item logout" routerLinkActive="item-active" (click)="logout()">
+        <img src="../../../assets/icons/logout-icon.svg" alt="Log out icon">        
+        <span>Log out</span>
+      </a>
+    </div>
+  </div>
+</nav>

@@ -1,0 +1,123 @@
+<div *ngIf="!addNewUser else addUser" class="container-fluid user-management">
+  <div class="card">
+    <div class="table-action-wrapper d-flex align-items-center justify-content-between">
+      <div class="search-input">
+        <img src="../../assets/icons/search.svg" alt="Search icon">
+        <input type="text" placeholder="Search" [(ngModel)]="searchText" (keyup.enter)="onSearch()">
+      </div>
+      <div class="ml-auto d-flex">
+        <button class="btn btn-icon" (click)="onRoleAccess()">
+          <img src="../../assets/icons/gear.svg" alt="Gear icon">
+        </button>
+        <button class="btn btn-primary" (click)="onAddNewUser()">
+          <img src="../../assets/icons/plus.svg" alt="Plus icon">
+          <span>Add User</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="table">
+      <div *ngIf="users">
+        <table class="table">
+          <thead class="table-light">
+            <tr>
+              <th><input type="checkbox" class="form-check-input" [checked]="isAllCheckBoxChecked()" (change)="checkAllCheckBox($event)"></th>
+              <th>First name</th>
+              <th>Last name</th>
+              <th>Email address</th>
+              <th>Role type</th>
+              <th>Status</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let user of users; let i=index;">
+              <td><input type="checkbox" class="form-check-input" value="{{user.id}}" [(ngModel)]="users[i].checked"></td>
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.role}}</td>
+              <td><div class="status {{user.status | lowercase }}">{{user.status}}</div></td>
+              <td class="more-icon">
+                <div id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  <img src="../../assets/icons/more-icon.svg" alt="More icon" class="more-icon">
+                </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li (click)="onEdit(user)">
+                    <img src="../../assets/icons/edit-user.svg" alt="Edit user icon">
+                    <span>Edit user</span>
+                  </li>
+                  <li *ngIf="user.status === 'Active' else activateUser " (click)="onSetStatus(user.id, user.status)" class="color-red">
+                    <img src="../../assets//icons/deactivate-user.svg" alt="Deactivate user icon">
+                    <span>Deactivate user</span>
+                  </li>
+                  <ng-template #activateUser>
+                    <li (click)="onSetStatus(user.id, user.status)" class="color-green">
+                      <img src="../../assets//icons/activate-user.svg" alt="Activate user icon">
+                      <span>Activate user</span>
+                    </li>
+                  </ng-template>
+                </ul>
+              </td>    
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<ng-template #addUser>
+  <div class="page-header d-flex justify-content-end">
+    <button class="btn btn-outline-danger" (click)="onCancel()">Cancel</button>
+    <button class="btn btn-primary" form="userForm">Save</button>
+  </div>
+  <div class="container-fluid user-management add-new-user">
+    <h1 class="page-title">User information</h1>
+
+    <div class="card ">
+      <form ngNativeValidate class="form-wrapper" id="userForm" (submit)="handleFormSubmit()" >
+        <div class="form-group">
+          <div class="form-item form-floating mb-3">
+            <input name="name" [(ngModel)]="name" type="text" class="form-control" id="floatingInput" placeholder=" " required>
+            <label for="floatingInput">First name</label>
+          </div>
+          <div class="form-item form-floating mb-3">
+            <input name="last-name" [(ngModel)]="lastName" type="text" class="form-control" id="floatingInput2" placeholder=" " required>
+            <label for="floatingInput">Last name</label>
+          </div>
+        </div>
+        <div class="form-item form-floating mb-3">
+          <input name="email" [(ngModel)]="email" type="text" class="form-control" id="floatingInput3" placeholder=" " required>
+          <label for="floatingInput">Email address</label>
+        </div>
+        <div class="form-item form-floating mb-3">
+          <select name="role" required class="form-select" [ngClass]="{'valid': role !== ''}" (change)="selectOption($event)">
+            <option value="" disabled [selected]="role === ''">Role type</option>
+            <option *ngFor="let o of options" [selected]="role === o.name" value="{{o.value}}">
+              {{o.name}}
+           </option>
+          </select>
+        </div>
+
+        <div class="user-password">
+          <h3>Set password</h3>
+          <div class="form-item form-floating">
+            <input [(ngModel)]="pass" name="password" [type]="showPw ? 'text' : 'password'" class="form-control" id="floatingPassword" placeholder=" ">
+            <label for="floatingPassword">Enter Password</label>
+            <div class="show-pw" (click)="showPassword()">
+              <ng-template [ngIf]="showPw">
+                <img src="../../../assets/icons/eye.svg" alt="Show password icon">
+              </ng-template>
+              <ng-template [ngIf]="!showPw">
+                <img src="../../../assets/icons/eye-slash.svg" alt="Show password icon">
+              </ng-template>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+</ng-template>

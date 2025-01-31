@@ -1,0 +1,139 @@
+.login-page {
+  background-color: #F5FBFA;
+  display: flex;
+  height: 100vh;
+  padding-top: 6.5rem;
+  justify-content: center;
+
+  .page-wrap {
+    max-width: 40rem;
+    width: 100%;
+  }
+  .logo {
+    text-align: center;
+    margin-bottom: 4rem;
+  }
+
+  .form-wrapper {
+    background-color: #fff;
+    margin: 0 auto;
+    border-radius: 1.6rem;
+    padding: 4rem 2.5rem;
+    text-align: center;
+    h1 {
+      font-weight: 700;
+      font-size: 2.2rem;
+      color: var(--text-dark);
+      margin-bottom: 1rem;
+    }
+    .welcome-text {
+      color: var(--text-gray);
+      font-size: 1.4rem;
+      font-weight: 400;
+      margin-bottom: 4rem;
+    }
+    .form-item {
+      margin-bottom: 3.5rem !important;
+      input {
+        &.ng-valid {
+          background-color: #fff;
+          border: 1px solid #BEBCC7;
+          -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+          box-shadow: 0 0 0px 1000px #fff inset;
+        }
+        height: 4.6rem;
+        padding: 1rem 2.4rem;
+        font-size: 1.4rem;
+        font-weight: 500;
+        background-color: #F9FAFA;
+        border: none;
+        border-radius: .8rem;
+        transition: .2s;
+
+        &:focus {
+          outline: none;
+          box-shadow: none;
+          border: 1px solid var(--primary-color) !important;
+          -webkit-text-fill-color: #171717;
+          -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+          -webkit-transition: background-color 5000s ease-in-out 0s;
+          transition: background-color 5000s ease-in-out 0s;
+          &~label {
+            color: var(--primary-color);
+          }
+        }
+      }
+      label {
+        transition: .2s;
+        max-width: fit-content;
+        opacity: 1 !important;
+        color: var(--text-gray);
+        height: auto;
+        padding-left: 2.4rem;
+        font-size: 1.4rem;    
+        font-weight: 500;
+      }
+
+      input:-webkit-autofill,
+      input:-webkit-autofill:hover, 
+      input:-webkit-autofill:focus {
+        border: 1px solid #BDBDC7;
+        -webkit-text-fill-color: #171717;
+        -webkit-box-shadow: 0 0 0px 1000px #fff inset;
+        -webkit-transition: background-color 5000s ease-in-out 0s;
+        transition: background-color 5000s ease-in-out 0s;
+        font-weight: 500 !important;
+      }
+    }
+    .form-item-footer {
+      margin-top: -1.5rem;
+      margin-bottom: 3rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .form-check {
+        margin-bottom: 0 !important;
+      }
+      label {
+        font-size: 1.3rem;
+        cursor: pointer;
+      }
+    }
+    button {
+      margin: 0 auto 6rem;
+      width: 8rem;
+    }
+    .show-pw {
+      position: absolute;
+      right: 1.2rem;
+      cursor: pointer;
+      padding: .2rem .4rem;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .help {
+      color: var(--text-gray);
+      font-size: 1.3rem;
+      font-weight: 500;
+    }
+  }
+
+  .form-floating>.form-control:-webkit-autofill~label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-12px) translateX(20px);
+    padding: 0 10px !important;
+    background-color: #F9FAFA !important;
+    font-weight: 500;
+    font-family: "DM Sans", sans-serif !important;
+  }
+  .form-floating>.form-control-plaintext~label, .form-floating>.form-control:focus~label, .form-floating>.form-control:not(:placeholder-shown)~label, .form-floating>.form-select~label {
+    opacity: 0.65;
+    transform: scale(0.85) translateY(-12px) translateX(20px);
+    padding: 0 10px !important;
+    background-color: #fff !important; 
+    font-weight: 500;
+    font-family: "DM Sans", sans-serif !important;
+  }
+}
+
+
