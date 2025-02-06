@@ -207,6 +207,7 @@ namespace AFTER.WebApp
             services.AddTransient<IMD5Service, MD5Service>();
             services.AddTransient<IHttpContextService, HttpContextService>();
             services.AddTransient<ITicketService, TicketService>();
+            services.AddTransient<IPdfService, PdfService>();
 
             services.AddTransient<IUnitOfWork, UnitOfWork>();
         }
