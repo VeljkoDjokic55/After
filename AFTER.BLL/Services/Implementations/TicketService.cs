@@ -18,15 +18,48 @@ namespace AFTER.BLL.Services.Implementations
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
+        private readonly IPdfService _pdfService;
 
 
-        public TicketService(IUnitOfWork unitOfWork, IMapper mapper)
+        public TicketService(IUnitOfWork unitOfWork, IMapper mapper, IPdfService pdfService)
         {
             _uow = unitOfWork;
             _mapper = mapper;
+            _pdfService = pdfService;
         }
 
-       
+        public async Task<ResponsePackage<string>> Generate(int count, DateTime? validFrom, DateTime? validTo)
+        {
+
+            List<Ticket> tickets = new List<Ticket>();
+            for (int i = 0; i < count; i++) 
+            {
+                tickets.Add(new Ticket()
+                {
+                    LastUpdateTime = DateTime.Now,
+                    Name = string.Empty,
+                    ValidFrom = validFrom,
+                    ValidTo = validTo,
+                    Guid = Guid.NewGuid(),
+                    ScannedCount = 0,
+                    ScannedCountMax = 1
+                });
+            }
+
+            await _uow.GetTicketRepository().AddRangeAsync(tickets);
+            await _uow.CompleteAsync();
+
+            foreach (var t in tickets) 
+            {
+                t.Name = $"After_{t.Id.ToString("D10")}";
+                await _pdfService.GeneratePdf($"https://after.azurewebsites.net/validate-ticket/{t.Guid}", t.Name);
+
+            }
+            await _uow.CompleteAsync();
+
+
+            return new ResponsePackage<string>(ResponseStatus.OK, "Ticket saved Successfully.");
+        }
 
         public async Task<ResponsePackage<string>> Save(TicketDataIn dataIn)
         {

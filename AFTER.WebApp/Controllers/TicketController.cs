@@ -57,6 +57,20 @@ namespace AFTER.WebApp.Controllers
             return Ok();
         }
 
+        [HttpPost("GenerateTickets")]
+        [AllowAnonymous]
+        public async Task<IActionResult> GenerateTickets(int count)
+        {
+            await _auditLogService.Save("Ticket", "GenerateTickets", count);
+
+            var validFrom = new DateTime(2025, 7, 11, 0, 0, 0, DateTimeKind.Utc);
+            var validTo = new DateTime(2025, 7, 11, 23, 59, 59, 999, DateTimeKind.Utc);
+            await _ticketService.Generate(count, validFrom, validTo);
+            return Ok();
+        }
+
+
+
 
     }
 }

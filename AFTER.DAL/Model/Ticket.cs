@@ -12,6 +12,7 @@ namespace AFTER.DAL.Model
         public string Name { get; set; }
         public DateTime? ValidFrom { get; set; }
         public DateTime? ValidTo { get;set; }
-
+        public int? ScannedCount { get; set; }
+        public int? ScannedCountMax { get; set; }
     }
 }
